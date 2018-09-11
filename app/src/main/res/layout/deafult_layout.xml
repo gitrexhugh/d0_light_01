@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/background_dark">
+
+    <ImageButton
+        android:id="@+id/btn_back_light_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/btn_back_light1_ds"
+        android:src="@mipmap/backlight1_xxxhdpi"
+        android:layout_marginLeft="30sp"
+        android:layout_marginTop="30sp"/>
+
+    <ImageButton
+        android:id="@+id/btn_screen_light_0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/btn_back_light1_ds"
+        android:src="@mipmap/screenlight0_xxxhdpi"
+        android:layout_toRightOf="@+id/btn_back_light_1"
+        android:layout_alignTop="@id/btn_back_light_1"
+        android:layout_marginLeft="30sp" />
+    <ImageButton
+        android:id="@+id/btn_power_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/btn_back_light1_ds"
+        android:src="@mipmap/light_xxxhdpi"
+        android:layout_below="@+id/btn_back_light_1"
+        android:layout_centerInParent="true"
+        android:layout_margin="20sp"/>
 
 </RelativeLayout>

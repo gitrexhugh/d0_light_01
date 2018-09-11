@@ -6,30 +6,33 @@
     android:background="@android:color/background_dark">
 
     <ImageButton
-        android:id="@+id/btn_back_light_1"
+        android:id="@+id/btn_back_light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/btn_back_light1_ds"
         android:src="@mipmap/backlight1_xxxhdpi"
+        android:background="@android:color/transparent"
         android:layout_marginLeft="30sp"
         android:layout_marginTop="30sp"/>
 
     <ImageButton
-        android:id="@+id/btn_screen_light_0"
+        android:id="@+id/btn_screen_light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/btn_back_light1_ds"
         android:src="@mipmap/screenlight0_xxxhdpi"
-        android:layout_toRightOf="@+id/btn_back_light_1"
-        android:layout_alignTop="@id/btn_back_light_1"
+        android:background="@android:color/transparent"
+        android:layout_toRightOf="@+id/btn_back_light"
+        android:layout_alignTop="@id/btn_back_light"
         android:layout_marginLeft="30sp" />
     <ImageButton
-        android:id="@+id/btn_power_1"
+        android:id="@+id/btn_power"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/btn_back_light1_ds"
         android:src="@mipmap/light_xxxhdpi"
-        android:layout_below="@+id/btn_back_light_1"
+        android:background="@android:color/transparent"
+        android:layout_below="@+id/btn_back_light"
         android:layout_centerInParent="true"
         android:layout_margin="20sp"/>
 

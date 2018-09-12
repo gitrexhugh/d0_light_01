@@ -2,6 +2,10 @@ package com.example.rex_h.d0_light_01;
 
 import android.app.Activity;
 import android.app.Activity;
+import android.content.Context;
+import android.hardware.camera2.CameraCharacteristics;
+import android.hardware.camera2.CameraManager;
+import android.hardware.camera2.CameraAccessException;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -11,6 +15,7 @@ import android.widget.SeekBar;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.graphics.Color;
+
 
 public class main_light_01 extends Activity {
     private ImageButton ibtn_back_light, ibtn_screen_light, ibtn_power;
@@ -32,10 +37,23 @@ public class main_light_01 extends Activity {
         ibtn_power.setOnClickListener(ibtn_power_Click);
         ibtn_back_light.setOnClickListener(ibtn_back_light_Click);
         ibtn_screen_light.setOnClickListener(ibtn_screen_light_Click);
-        light_state=1;
-        light_behavior(light_state);
+        lightOn();
 
     }
+    private void lightOn(){
+
+        CameraManager mCamera = (CameraManager)getSystemService(Context.CAMERA_SERVICE);
+        String cameraID[];
+        try{
+            cameraID=mCamera.getCameraIdList();
+            // mCamera.setTorchMode(cameraID,true);
+            light_state=1;
+            light_behavior(light_state);
+        }catch (CameraAccessException e){
+            e.printStackTrace();
+        }
+    }
+
     private void load_screen_light_layout(){
         setContentView(R.layout.screen_light_layout);
         /*ibtn_back_light=(ImageButton)findViewById(R.id.btn_back_light);
@@ -132,6 +150,7 @@ public class main_light_01 extends Activity {
         switch (s){
             case 1:
                 ibtn_power.setImageDrawable(getResources().getDrawable(R.mipmap.light_xxxhdpi));
+
                 break;
             case 3:
                 load_screen_light_layout();

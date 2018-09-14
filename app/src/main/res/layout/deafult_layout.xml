@@ -29,11 +29,19 @@
         android:id="@+id/btn_power"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/btn_back_light1_ds"
-        android:src="@mipmap/light_xxxhdpi"
+        android:contentDescription="@string/btn_back_light0_ds"
+        android:src="@mipmap/light_xxxhdpi_0"
         android:background="@android:color/transparent"
         android:layout_below="@+id/btn_back_light"
         android:layout_centerInParent="true"
         android:layout_margin="20sp"/>
+    <TextView
+        android:id="@+id/show_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_below="@id/btn_power"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorAccent"/>
 
 </RelativeLayout>

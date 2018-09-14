@@ -112,7 +112,7 @@ public class main_light_01 extends Activity {
         sk_R.setOnSeekBarChangeListener(seekbartracking);
         sk_G.setOnSeekBarChangeListener(seekbartracking);
         sk_B.setOnSeekBarChangeListener(seekbartracking);
-        
+
 
     }
 

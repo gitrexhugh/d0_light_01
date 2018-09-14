@@ -5,36 +5,37 @@
     android:layout_height="match_parent"
     android:background="@android:color/background_dark">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btn_back_light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/btn_back_light1_ds"
-        android:src="@mipmap/backlight1_xxxhdpi"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="81dp"
+        android:layout_marginTop="129dp"
         android:background="@android:color/transparent"
-        android:layout_marginLeft="30sp"
-        android:layout_marginTop="30sp"/>
+        android:contentDescription="@string/btn_back_light1_ds"
+        android:src="@mipmap/backlight1_xxxhdpi" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btn_screen_light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/btn_back_light1_ds"
-        android:src="@mipmap/screenlight0_xxxhdpi"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/btn_back_light"
+        android:layout_marginEnd="80dp"
         android:background="@android:color/transparent"
-        android:layout_toRightOf="@+id/btn_back_light"
-        android:layout_alignTop="@id/btn_back_light"
-        android:layout_marginLeft="30sp" />
-    <ImageButton
+        android:contentDescription="@string/btn_back_light1_ds"
+        android:src="@mipmap/screenlight0_xxxhdpi" />
+
+    <ImageView
         android:id="@+id/btn_power"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/btn_back_light0_ds"
-        android:src="@mipmap/light_xxxhdpi_0"
-        android:background="@android:color/transparent"
-        android:layout_below="@+id/btn_back_light"
         android:layout_centerInParent="true"
-        android:layout_margin="20sp"/>
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/btn_back_light0_ds"
+        android:src="@mipmap/light_xxxhdpi_0" />
     <TextView
         android:id="@+id/show_status"
         android:layout_width="match_parent"

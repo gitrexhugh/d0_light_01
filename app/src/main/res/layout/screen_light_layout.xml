@@ -5,26 +5,28 @@
     android:layout_height="match_parent"
     android:background="@android:color/background_dark">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btn_back_light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/btn_back_light1_ds"
-        android:src="@mipmap/backlight1_xxxhdpi"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="81dp"
+        android:layout_marginTop="129dp"
         android:background="@android:color/transparent"
-        android:layout_marginLeft="30sp"
-        android:layout_marginTop="30sp"/>
+        android:contentDescription="@string/btn_back_light1_ds"
+        android:src="@mipmap/backlight1_xxxhdpi" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btn_screen_light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/btn_back_light1_ds"
-        android:src="@mipmap/screenlight0_xxxhdpi"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/btn_back_light"
+        android:layout_marginEnd="80dp"
         android:background="@android:color/transparent"
-        android:layout_toRightOf="@+id/btn_back_light"
-        android:layout_alignTop="@id/btn_back_light"
-        android:layout_marginLeft="30sp" />
+        android:contentDescription="@string/btn_back_light1_ds"
+        android:src="@mipmap/screenlight0_xxxhdpi" />
 
     <TextView
         android:id="@+id/show_color"
@@ -40,7 +42,7 @@
         android:layout_marginLeft="15dp"
         android:text="@string/str_red"
         android:textSize="20sp"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/skR_tint"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="135dp"/>
@@ -55,13 +57,15 @@
         android:layout_alignParentStart="true"
         android:layout_marginBottom="110dp"
         android:max="255"
-        android:progress="255" />
+        android:progress="255"
+        android:progressTint="@color/skR_background"
+        android:thumbTint="@color/skR_tint"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:textSize="20sp"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/skG_tint"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="85dp"
@@ -76,13 +80,15 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="65dp"
-        android:progress="255" />
+        android:progress="255"
+        android:progressTint="@color/skG_background"
+        android:thumbTint="@color/skG_tint"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:textSize="20sp"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/skB_tint"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="40dp"
@@ -97,6 +103,8 @@
         android:layout_alignParentStart="true"
         android:layout_marginBottom="20dp"
         android:max="255"
-        android:progress="255" />
+        android:progress="255"
+        android:progressTint="@color/skB_background"
+        android:thumbTint="@color/skB_tint"/>
 
 </RelativeLayout>

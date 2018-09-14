@@ -16,83 +16,42 @@ import android.graphics.Color;
 public class main_light_01 extends Activity {
 
     private int light_state;// 1: On_back_light_constant, 2: On_back_light_flash, 3: On_screen_light, 4: Off_light
-    //以image button宣告圖形按鈕
-
-    private ImageButton ibtn_screen_light;
-    private ImageButton ibtn_back_light;
-    private ImageButton ibtn_power;
     //以image view宣告圖形按鈕
-    /*
+
     private ImageView ibtn_screen_light;
     private ImageView ibtn_back_light;
-    private ImageView ibtn_power;*/
+    private ImageView ibtn_power;
 
     private TextView show_status;
     private String str_status;
+    SeekBar sk_R;
+    SeekBar sk_G;
+    SeekBar sk_B;
+    TextView show_text;
+    int cR;
+    int cG;
+    int cB;
+    int sk_id;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         load_default_layout();
-        /*
-        ibtn_back_light=(ImageButton) findViewById(R.id.btn_back_light);
-        ibtn_screen_light=(ImageButton)findViewById(R.id.btn_screen_light);
-        ibtn_power=(ImageButton)findViewById(R.id.btn_power);
-        //以下宣告按鈕，Listener內容另外寫
-        ibtn_back_light.setOnClickListener(ibtn_back_light_click);// Back light
-        ibtn_screen_light.setOnClickListener(ibtn_screen_light_Click);// Screen Light
-        ibtn_power.setOnClickListener(ibtn_power_click);// Power*/
 
-
-        //以下將Listener Method寫在宣告內容中
-        /*
-        ibtn_back_light.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (light_state == 3) {
-                    load_screen_light_layout();
-                } else {
-                    light_state = 1;
-                    lightOn();
-                }
-            }
-        });
-        ibtn_screen_light.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                light_state=3;
-                load_screen_light_layout();
-            }
-        });
-
-        ibtn_power.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                if (light_state==1){
-                    light_state=4;
-                    lightOff();
-                }else {
-                    light_state=1;
-                    lightOn();
-                }
-            }
-        });*/
 
     }
     private void load_default_layout(){
         setContentView(R.layout.deafult_layout);
 
-        ibtn_back_light=(ImageButton) findViewById(R.id.btn_back_light);
-        ibtn_screen_light=(ImageButton)findViewById(R.id.btn_screen_light);
-        ibtn_power=(ImageButton)findViewById(R.id.btn_power);
+        ibtn_back_light=(ImageView) findViewById(R.id.btn_back_light);
+        ibtn_screen_light=(ImageView)findViewById(R.id.btn_screen_light);
+        ibtn_power=(ImageView)findViewById(R.id.btn_power);
         //以下宣告按鈕，Listener內容另外寫
         ibtn_back_light.setOnClickListener(ibtn_back_light_click);// Back light
         ibtn_screen_light.setOnClickListener(ibtn_screen_light_Click);// Screen Light
         ibtn_power.setOnClickListener(ibtn_power_click);// Power
 
-        //lightOn();
-        //light_state=1;
-        //light_behavior(light_state);
+
     }
 
 
@@ -130,63 +89,34 @@ public class main_light_01 extends Activity {
     private void load_screen_light_layout(){
         setContentView(R.layout.screen_light_layout);
 
-        /*ibtn_back_light=(ImageButton)findViewById(R.id.btn_back_light);
-        ibtn_screen_light=(ImageButton)findViewById(R.id.btn_screen_light);
-        ibtn_power=(ImageButton)findViewById(R.id.btn_power);*/
+        ibtn_back_light=(ImageView) findViewById(R.id.btn_back_light);
+        ibtn_screen_light=(ImageView) findViewById(R.id.btn_screen_light);
         //以下宣告按鈕，Listener內容另外寫
         ibtn_back_light.setOnClickListener(ibtn_back_light_click);// Back light
         ibtn_screen_light.setOnClickListener(ibtn_screen_light_Click);// Screen Light
 
         light_state=3;
         //light_behavior(light_state);
-        SeekBar sk_R, sk_G, sk_B;
-        TextView show_text;
+
+
         sk_R=(SeekBar)findViewById(R.id.seekR);
         sk_G=(SeekBar)findViewById(R.id.seekG);
         sk_B=(SeekBar)findViewById(R.id.seekB);
-        sk_R.setProgress(255);
-        sk_G.setProgress(255);
-        sk_B.setProgress(255);
+
+
+
         show_text=(TextView)findViewById(R.id.show_color);
+        show_text.setBackgroundColor(Color.argb(255,cR,cG,cB));
+        show_text.setText("status:"+light_state+";"+String.format("%02x", cR)+String.format("%02x", cG)+String.format("%02x", cB));
 
+        sk_R.setOnSeekBarChangeListener(seekbartracking);
+        sk_G.setOnSeekBarChangeListener(seekbartracking);
+        sk_B.setOnSeekBarChangeListener(seekbartracking);
+        
 
-        //show_text.setBackgroundColor(Color.argb(255,cR,cG,cB));
-        //show_text.setText(String.format("%02x", cR)+String.format("%02x", cG)+String.format("%02x", cB));
-
-        sk_R.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            int cR=sk_R.getProgress();
-            int cG=sk_G.getProgress();
-            int cB=sk_B.getProgress();
-
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                int id=seekBar.getId();
-                show_text.setBackgroundColor(Color.argb(255,cR,cG,cB));
-                show_text.setText(String.format("%02x", cR)+String.format("%02x", cG)+String.format("%02x", cB));
-                switch (id){
-                    case com.example.rex_h.d0_light_01.R.id.seekR:
-                        cR=progress;
-                        break;
-                    case com.example.rex_h.d0_light_01.R.id.seekG:
-                        cG=progress;
-                        break;
-                    case com.example.rex_h.d0_light_01.R.id.seekB:
-                        cB=progress;
-                        break;
-                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
     }
+
+
 
 //以下為Listener Method
    private View.OnClickListener ibtn_screen_light_Click= new View.OnClickListener() {
@@ -200,7 +130,7 @@ public class main_light_01 extends Activity {
     private View.OnClickListener ibtn_back_light_click=new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            light_state = 1;
+            //light_state = 1;
             load_default_layout();
 
         }
@@ -218,22 +148,42 @@ public class main_light_01 extends Activity {
             }
         }
     };
+    private SeekBar.OnSeekBarChangeListener seekbartracking=new SeekBar.OnSeekBarChangeListener(){
+        //cR=sk_R.getProgress();
 
-    /*private void light_behavior(int s){
-        switch (s){
-            case 1:
-                ibtn_power.setImageDrawable(getResources().getDrawable(R.mipmap.light_xxxhdpi));
-                lightOn();
-                break;
-            case 2:
-                ibtn_power.setImageDrawable(getResources().getDrawable(R.mipmap.light_xxxhdpi));
-                break;
-            case 3:
-                load_screen_light_layout();
-            case  4:
-                ibtn_power.setImageDrawable(getResources().getDrawable(R.mipmap.light_xxxhdpi_0));
-                lightOff();
-                break;
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            sk_id=seekBar.getId();
+            switch (sk_id){
+                case R.id.seekR:
+                    cR=sk_R.getProgress();
+                    //cR=progress;
+                    break;
+
+                case R.id.seekG:
+                    cG=sk_G.getProgress();
+                    break;
+
+                case R.id.seekB:
+                    cB=sk_B.getProgress();
+                    break;
+
+            }
+            //cR=sk_R.getProgress();
+            show_text.setBackgroundColor(Color.argb(255,cR,cG,cB));
+            show_text.setText("status:"+light_state+";"+String.format("%02x", cR)+String.format("%02x", cG)+String.format("%02x", cB));
+
         }
-    }*/
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+    };
+
 }

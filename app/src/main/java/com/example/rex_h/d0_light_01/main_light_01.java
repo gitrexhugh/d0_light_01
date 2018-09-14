@@ -5,7 +5,9 @@ import android.content.Context;
 import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CameraAccessException;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -16,11 +18,12 @@ import android.graphics.Color;
 public class main_light_01 extends Activity {
 
     private int light_state;// 1: On_back_light_constant, 2: On_back_light_flash, 3: On_screen_light, 4: Off_light
+        //final RelativeLayout screen_bg= (RelativeLayout)findViewById(R.id.screen_background);
     //以image view宣告圖形按鈕
-
     private ImageView ibtn_screen_light;
     private ImageView ibtn_back_light;
     private ImageView ibtn_power;
+
 
     private TextView show_status;
     private String str_status;
@@ -28,9 +31,9 @@ public class main_light_01 extends Activity {
     SeekBar sk_G;
     SeekBar sk_B;
     TextView show_text;
-    int cR;
-    int cG;
-    int cB;
+    int cR=255;
+    int cG=255;
+    int cB=255;
     int sk_id;
 
     @Override
@@ -48,7 +51,9 @@ public class main_light_01 extends Activity {
         ibtn_power=(ImageView)findViewById(R.id.btn_power);
         //以下宣告按鈕，Listener內容另外寫
         ibtn_back_light.setOnClickListener(ibtn_back_light_click);// Back light
+        ibtn_back_light.setImageResource(R.mipmap.backlight1_xxxhdpi);
         ibtn_screen_light.setOnClickListener(ibtn_screen_light_Click);// Screen Light
+        ibtn_screen_light.setImageResource(R.mipmap.screenlight0_xxxhdpi);
         ibtn_power.setOnClickListener(ibtn_power_click);// Power
 
 
@@ -62,38 +67,40 @@ public class main_light_01 extends Activity {
         ibtn_power.setImageResource(R.mipmap.light_xxxhdpi);
 
         //以下為Camera Manager相關，不適用模擬器
-        /*
+
         CameraManager mCamera = (CameraManager)getSystemService(Context.CAMERA_SERVICE);
         try{
             String cameraID=mCamera.getCameraIdList()[0];
              mCamera.setTorchMode(cameraID,true);
         }catch (CameraAccessException e){
             e.printStackTrace();
-        }*/
+        }
     }
     private void lightOff(){
         str_status="light_Off";
         show_status.setText(str_status);
         ibtn_power.setImageResource(R.mipmap.light_xxxhdpi_0);
         //以下為Camera Manager相關，不適用模擬器
-        /*
+
         CameraManager mCamera = (CameraManager)getSystemService(Context.CAMERA_SERVICE);
         try{
             String cameraID=mCamera.getCameraIdList()[0];
             mCamera.setTorchMode(cameraID,false);
         }catch (CameraAccessException e){
             e.printStackTrace();
-        }*/
+        }
     }
 
     private void load_screen_light_layout(){
         setContentView(R.layout.screen_light_layout);
-
         ibtn_back_light=(ImageView) findViewById(R.id.btn_back_light);
         ibtn_screen_light=(ImageView) findViewById(R.id.btn_screen_light);
         //以下宣告按鈕，Listener內容另外寫
         ibtn_back_light.setOnClickListener(ibtn_back_light_click);// Back light
+        ibtn_back_light.setImageResource(R.mipmap.backlight0_xxxhdpi);
         ibtn_screen_light.setOnClickListener(ibtn_screen_light_Click);// Screen Light
+        ibtn_screen_light.setImageResource(R.mipmap.screenlight1_xxxhdpi);
+
 
         light_state=3;
         //light_behavior(light_state);
@@ -106,6 +113,7 @@ public class main_light_01 extends Activity {
 
 
         show_text=(TextView)findViewById(R.id.show_color);
+        //screen_bg.setBackgroundColor(Color.argb(255,cR,cG,cB));
         show_text.setBackgroundColor(Color.argb(255,cR,cG,cB));
         show_text.setText("status:"+light_state+";"+String.format("%02x", cR)+String.format("%02x", cG)+String.format("%02x", cB));
 
@@ -170,6 +178,7 @@ public class main_light_01 extends Activity {
 
             }
             //cR=sk_R.getProgress();
+            //screen_bg.setBackgroundColor(Color.argb(255,cR,cG,cB));
             show_text.setBackgroundColor(Color.argb(255,cR,cG,cB));
             show_text.setText("status:"+light_state+";"+String.format("%02x", cR)+String.format("%02x", cG)+String.format("%02x", cB));
 

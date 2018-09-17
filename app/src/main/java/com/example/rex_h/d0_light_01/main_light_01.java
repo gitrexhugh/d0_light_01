@@ -6,9 +6,13 @@ import android.content.Context;
 import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CameraAccessException;
 import android.os.Bundle;
+import android.support.v4.graphics.drawable.IconCompat;
 import android.text.Layout;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -16,9 +20,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.graphics.Color;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.Toolbar;
 
-
-public class main_light_01 extends Activity {
+public class main_light_01 extends AppCompatActivity {
 
     private int light_state;// 1: On_back_light_constant, 2: On_back_light_flash, 3: On_screen_light, 4: Off_light
     //以image view宣告圖形按鈕
@@ -35,18 +43,29 @@ public class main_light_01 extends Activity {
     int cG=255;
     int cB=255;
     int sk_id;
-    private ImageView img_glow;
+    Toolbar mToolbarTb = (Toolbar) findViewById(R.id.tb_toolbar);
+
+
+   //private ImageView img_glow;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         load_default_layout();
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu,menu);
+        return true;
+    }
+
     private void load_default_layout(){
         setContentView(R.layout.deafult_layout);
-
+/*
         ibtn_back_light=(ImageView) findViewById(R.id.btn_back_light);
         ibtn_screen_light=(ImageView)findViewById(R.id.btn_screen_light);
         ibtn_power=(ImageView)findViewById(R.id.btn_power);
@@ -56,9 +75,7 @@ public class main_light_01 extends Activity {
         ibtn_screen_light.setOnClickListener(ibtn_screen_light_Click);// Screen Light
         ibtn_screen_light.setImageResource(R.mipmap.screenlight0_xxxhdpi);
         ibtn_power.setOnClickListener(ibtn_power_click);// Power
-        img_glow=(ImageView)findViewById(R.id.glow);
-        //img_glow.setAlpha(0.0);
-
+*/
     }
 
 
@@ -67,7 +84,8 @@ public class main_light_01 extends Activity {
         str_status="light_On";
         show_status.setText(str_status+"|status:"+light_state);
         ibtn_power.setImageResource(R.mipmap.light_xxxhdpi);
-        anim_control(light_state);
+        //呼叫動畫控制程式
+       // anim_control(light_state);
 
         //以下為Camera Manager相關，不適用模擬器
         CameraManager mCamera = (CameraManager)getSystemService(Context.CAMERA_SERVICE);
@@ -82,7 +100,7 @@ public class main_light_01 extends Activity {
         str_status="light_Off";
 
         ibtn_power.setImageResource(R.mipmap.light_xxxhdpi_0);
-        anim_control(light_state);
+       // anim_control(light_state);
 
         //以下為Camera Manager相關，不適用模擬器
         CameraManager mCamera = (CameraManager)getSystemService(Context.CAMERA_SERVICE);
@@ -94,7 +112,13 @@ public class main_light_01 extends Activity {
         }
     }
 
-    private void anim_control(int light_state){
+
+    /*private void anim_control(int light_state){
+        //呼叫xml動畫檔
+        Animation scale= AnimationUtils.loadAnimation(main_light_01.this,R.anim.glow_ani);
+        img_glow.startAnimation(scale);
+
+        //由Java 控制動畫
         ObjectAnimator glow_alpha=ObjectAnimator.ofFloat(img_glow,"alpha", 1,0);
         glow_alpha.setDuration(1800);
         glow_alpha.setRepeatCount(Animation.INFINITE);
@@ -109,17 +133,20 @@ public class main_light_01 extends Activity {
         glow_sacleY.setInterpolator(new DecelerateInterpolator());
 
         if (light_state==1){
-            glow_alpha.start();
-            glow_sacleX.start();
-            glow_sacleY.start();
+
+           //img_glow.startAnimation(scale);
+
+            //glow_alpha.start();
+            //glow_sacleX.start();
+            //glow_sacleY.start();
         } else {
-            glow_alpha.end();
-            show_status.setText(str_status+"|status:"+light_state);
+          //  img_glow.clearAnimation();
+            //glow_alpha.end();
 
         }
+        show_status.setText(str_status+"|status:"+light_state);
 
-
-    }
+    }*/
 
     private void load_screen_light_layout(){
         setContentView(R.layout.screen_light_layout);

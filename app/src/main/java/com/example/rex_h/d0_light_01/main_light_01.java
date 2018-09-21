@@ -7,6 +7,7 @@ import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CameraAccessException;
 import android.os.Bundle;
 import android.support.v4.graphics.drawable.IconCompat;
+import android.support.v4.view.ViewPager;
 import android.text.Layout;
 import android.view.View;
 import android.view.Window;
@@ -25,9 +26,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toolbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+
 
 public class main_light_01 extends AppCompatActivity {
 
+    private TabAdapter adapter;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
     private int light_state;// 1: On_back_light_constant, 2: On_back_light_flash, 3: On_screen_light, 4: Off_light
     //以image view宣告圖形按鈕
     private ImageView ibtn_screen_light;

@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_dark">
-
     <ImageView
         android:id="@+id/btn_back_light"
         android:layout_width="wrap_content"
@@ -50,29 +49,15 @@
         android:contentDescription="@string/btn_back_light_ds"
         android:src="@mipmap/screenlight0_xxxhdpi" />
 
-    <ImageView
-        android:id="@+id/glow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:src="@mipmap/glow"
-        android:alpha="0"/>
-    <ImageView
-        android:id="@+id/btn_power"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/btn_back_light_ds"
-        android:src="@mipmap/light_xxxhdpi_0" />
-
-    <TextView
-        android:id="@+id/show_status"
+    <TextureView android:id="@+id/preview"
+        android:visibility="visible"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:layout_below="@id/btn_power"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/colorAccent"/>
+        android:layout_height="match_parent"/>
+
+    <Button android:id="@+id/taskPicture"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/shoot"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

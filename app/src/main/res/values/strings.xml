@@ -10,5 +10,6 @@
     <string name="str_red">Red</string>
     <string name="str_green">Green</string>
     <string name="str_blue">Blue</string>
+    <string name="shoot">Take a Picture</string>
 
 </resources>

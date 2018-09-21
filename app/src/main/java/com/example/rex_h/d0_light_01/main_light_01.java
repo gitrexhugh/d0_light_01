@@ -43,29 +43,27 @@ public class main_light_01 extends AppCompatActivity {
     int cG=255;
     int cB=255;
     int sk_id;
-    Toolbar mToolbarTb = (Toolbar) findViewById(R.id.tb_toolbar);
-
-
    //private ImageView img_glow;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+        //getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         load_default_layout();
 
     }
+    /*menu選單功能 暫不執行
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu,menu);
         return true;
-    }
+    }*/
 
     private void load_default_layout(){
         setContentView(R.layout.deafult_layout);
-/*
+
         ibtn_back_light=(ImageView) findViewById(R.id.btn_back_light);
         ibtn_screen_light=(ImageView)findViewById(R.id.btn_screen_light);
         ibtn_power=(ImageView)findViewById(R.id.btn_power);
@@ -75,7 +73,7 @@ public class main_light_01 extends AppCompatActivity {
         ibtn_screen_light.setOnClickListener(ibtn_screen_light_Click);// Screen Light
         ibtn_screen_light.setImageResource(R.mipmap.screenlight0_xxxhdpi);
         ibtn_power.setOnClickListener(ibtn_power_click);// Power
-*/
+
     }
 
 
@@ -84,7 +82,7 @@ public class main_light_01 extends AppCompatActivity {
         str_status="light_On";
         show_status.setText(str_status+"|status:"+light_state);
         ibtn_power.setImageResource(R.mipmap.light_xxxhdpi);
-        //呼叫動畫控制程式
+        //呼叫動畫控制程式- 暫不執行
        // anim_control(light_state);
 
         //以下為Camera Manager相關，不適用模擬器
@@ -100,7 +98,7 @@ public class main_light_01 extends AppCompatActivity {
         str_status="light_Off";
 
         ibtn_power.setImageResource(R.mipmap.light_xxxhdpi_0);
-       // anim_control(light_state);
+       // anim_control(light_state); //呼叫動畫控制程式- 暫不執行
 
         //以下為Camera Manager相關，不適用模擬器
         CameraManager mCamera = (CameraManager)getSystemService(Context.CAMERA_SERVICE);
